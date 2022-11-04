@@ -1,7 +1,7 @@
 body {
-    &.no-scroll {
-        overflow: hidden;
-    }
+    // &.no-scroll {
+    //     overflow: hidden;
+    // }
     .body-container {
         overflow: hidden;
 
@@ -137,9 +137,77 @@ body {
 
             .page-sub-title {
                 color: $white;
+                margin-bottom: 70px;
             }
 
-            .diff-artist-carousel {}
+            .diff-artist-carousel {
+
+                .slick-arrow {
+                    width: 75px;
+                    height: 75px;
+                    position: absolute;
+                    bottom: -150px;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    cursor: pointer;
+
+                    &.next-arrow {
+                        left: 100px;
+                    }
+
+                    &.prev-arrow {
+                        right: 100px;
+                    }
+                }
+                .artist-block {
+                    &:nth-child(odd) {
+                        margin-top: 50px;
+                    }
+                    .artist-card {
+                        text-align: center;
+                        color: $white;
+                        border: 1.78743px solid #000000;
+                        box-shadow: 3.35305px 6.85851px 0px #000000;
+                        border-radius: 32px;
+                        background: #DE6668;
+                        padding: 43px 0 0;
+                        max-width: 323px;
+                        margin: 0 auto;
+                        .artist-title {
+                            margin-bottom: 10px;
+                            @include clash-600;
+                            font-size: 38px;
+                            line-height: 150%;
+                        }
+                        .artist-text {
+                            @include inter-700;
+                            font-size: 18px;
+                            line-height: 160%;
+                        }
+                        .artist-img {
+                            margin-top: 50px;
+                            img {
+                                margin: 0 auto;
+                            }
+                        }
+                    }
+                    .artist-caption {
+                        margin-top: 30px;
+                        text-align: center;
+                        span {
+                            @include inter-500;
+                            font-size: 20px;
+                            line-height: 160%;
+                            color: $black;
+                            display: inline-block;
+                            background: $white;
+                            border-radius: 12px;
+                            padding: 5px 20px;
+                        }
+                    }
+                }
+            }
         }
 
         .form-section {
