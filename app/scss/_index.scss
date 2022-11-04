@@ -149,6 +149,14 @@ body {
 
             .page-title {
                 color: $white;
+                .stroke {
+                    position: relative;
+                    .img-line {
+                        position: absolute;
+                        bottom: -20px;
+                        left: 0;
+                    }
+                }
             }
 
             .page-sub-title {
@@ -157,7 +165,60 @@ body {
                 text-align: center;
             }
 
-            .diff-artist-carousel {}
+            .search-bar {
+                display: flex;
+                align-items: center;
+                color: $black;
+                background-color: $white;
+                padding: 11px 12px 10px 50px;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border: 4px solid $black;
+                border-radius: 64px;
+                height: 115px;
+                span:nth-child(1) {
+                    @include inter-400;
+                    font-size: 28px;
+                    line-height: 130%;
+                    letter-spacing: -0.023em;
+                }
+                span:nth-child(2) {
+                    @include inter-400;
+                    font-size: 28px;
+                    line-height: 130%;
+                    letter-spacing: -0.023em;
+                    flex: 1;
+                    padding: 0 20px 0 15px;
+                    input {
+                        all: unset;
+                        @include inter-400;
+                        font-size: 28px;
+                        line-height: 130%;
+                        letter-spacing: -0.023em;
+                        width: 100%;
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.5);
+                        }
+                    }
+                }
+                span:nth-child(3) {
+                    @include inter-700;
+                    font-size: 28px;
+                    line-height: 130%;
+                    padding: 0 24px;
+                }
+                span:nth-child(4) {
+                    cursor: pointer;
+                    @include clash-600;
+                    font-size: 27px;
+                    line-height: 150%;
+                    color: $white;
+                    padding: 28px 70px 25px;
+                    background: #6565E4;
+                    border-radius: 48px;
+                }
+            }
         }
 
         .why-store {

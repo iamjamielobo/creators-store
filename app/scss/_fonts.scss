@@ -187,3 +187,8 @@ html {
     font-family: $font-dos;
     font-weight: 500;
 }
+
+@mixin inter-700 {
+    font-family: $font-dos;
+    font-weight: bold;
+}
