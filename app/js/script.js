@@ -22,8 +22,8 @@ $(document).ready(function () {
         slidesToShow: 4,
         slidesToScroll: 1,
         autoscroll: true,
-        nextArrow: `<img class='next-arrow' src="/img/carousel/right.png">`,
-        prevArrow: `<img class='prev-arrow' src="/img/carousel/left.png">`
+        nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
+        prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
         // responsive: [
         //     {
         //         breakpoint: 1024,
