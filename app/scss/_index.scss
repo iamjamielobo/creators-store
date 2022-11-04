@@ -170,10 +170,24 @@ body {
                         border: 1.78743px solid #000000;
                         box-shadow: 3.35305px 6.85851px 0px #000000;
                         border-radius: 32px;
-                        background: #DE6668;
                         padding: 43px 0 0;
-                        max-width: 323px;
+                        max-width: 350px;
                         margin: 0 auto;
+                        &._red {
+                            background: #DE6668;
+                        }
+                        &._purple {
+                            background: #A56EEE;
+                        }
+                        &._purple-dark {
+                            background: #5E5EE2;
+                        }
+                        &._yellow {
+                            background: #E9C356;
+                        }
+                        &._blue {
+                            background: #68B7CF;
+                        }
                         .artist-title {
                             margin-bottom: 10px;
                             @include clash-600;
