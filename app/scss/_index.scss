@@ -66,6 +66,7 @@ body {
                 position: absolute;
                 top: 0;
                 left: 0;
+                object-fit: cover;
             }
 
             .overlay {
@@ -163,6 +164,14 @@ body {
                 .artist-block {
                     &:nth-child(odd) {
                         margin-top: 50px;
+                    }
+                    &:hover {
+                        .artist-card {
+                            overflow: hidden;
+                            @include gradientAnimation(rgba(97,92,223,1), rgba(222,102,182,1), .6s);
+                            // background: rgb(97,92,223);
+                            // background: linear-gradient(90deg, rgba(97,92,223,1) 0%, rgba(222,102,182,1) 100%);
+                        }
                     }
                     .artist-card {
                         text-align: center;
