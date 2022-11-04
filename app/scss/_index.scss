@@ -200,7 +200,9 @@ body {
                             line-height: 160%;
                         }
                         .artist-img {
-                            margin-top: 50px;
+                            min-height: 300px;
+                            display: flex;
+                            align-items: end;
                             img {
                                 margin: 0 auto;
                             }

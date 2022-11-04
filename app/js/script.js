@@ -21,7 +21,7 @@ $(document).ready(function () {
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoscroll: true,
+        autoplay: true,
         nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
         prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
         // responsive: [
@@ -53,7 +53,7 @@ $(document).ready(function () {
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
-        autoscroll: true,
+        autoplay: true,
         nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
         prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
         // responsive: [
