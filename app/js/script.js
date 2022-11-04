@@ -15,7 +15,7 @@ function initHeroAnimation () {
 $(document).ready(function () {
     new WOW().init();
 
-    // initHeroAnimation();
+    initHeroAnimation();
 
     $(".other-brand-carousel").slick({
         infinite: true,
