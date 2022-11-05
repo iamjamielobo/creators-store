@@ -1,0 +1,7 @@
+Redirect 301 "https://stealth.design" "https://stealth.design"
+
+RewriteCond %{HTTP_HOST} ^https://stealth.design/ [NC]
+RewriteRule ^(.*)$ https://stealth.design/$1 [L,R=301,NC]
+
+RewriteCond %{HTTP_HOST} https://stealth.design/
+RewriteRule (.*) https://stealth.design/$1 [R=301,L]
