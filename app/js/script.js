@@ -1,80 +1,122 @@
-function initHeroAnimation () {
+function initHeroTextAnimation () {
+    var $titleLetters = $('.title-uno .letters');
+    var titleWrapper = $titleLetters[0];
+    titleWrapper.innerHTML = titleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    var $titleDosLetters = $('.title-dos .letters');
+    var titleDosWrapper = $titleDosLetters[0];
+    titleDosWrapper.innerHTML = titleDosWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    anime.timeline({}).add({
+        targets: '.title-uno .animated-text .letter',
+        translateY: ["1.1em", 0],
+        translateX: ["0.55em", 0],
+        translateZ: 0,
+        rotateZ: [180, 0],
+        duration: 2500,
+        easing: "easeOutExpo",
+        delay: (el, i) => 50 * i
+    })
+
+    anime.timeline({}).add({
+        targets: '.title-dos .animated-text .letter',
+        translateY: ["1.1em", 0],
+        translateX: ["0.55em", 0],
+        translateZ: 0,
+        rotateZ: [180, 0],
+        duration: 2500,
+        easing: "easeOutExpo",
+        delay: (el, i) => 50 * i
+    })
+}
+
+function initHeroAnimation() {
     var $body = $('body');
     var $heroVideo = $('.js-video');
     var $animationDiv = $('.intro-animation');
+    var isMobile = $('.intro-animation').css('display') === 'none';
+
+    if ( isMobile ) {
+        $heroVideo.get(0).play();
+        initHeroTextAnimation();
+        return false;
+    }
 
     setTimeout(function () {
         $animationDiv.addClass('infinity');
         setTimeout(function () {
             $body.removeClass('no-scroll');
             $heroVideo.get(0).play();
+            initHeroTextAnimation();
         }, 500);
     }, 3000);
 }
 
-function initSlick () {
-    $(".other-brand-carousel").slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
-        prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
-        // responsive: [
-        //     {
-        //         breakpoint: 1024,
-        //         settings: {
-        //         slidesToShow: 3,
-        //         infinite: true
-        //         }
-
-        //     }, {
-
-        //         breakpoint: 600,
-        //         settings: {
-        //         slidesToShow: 2,
-        //         dots: true
-        //         }
-
-        //     }, {
-
-        //         breakpoint: 300,
-        //         settings: "unslick" // destroys slick
-
-        //     }
-        // ]
-    });
+function initSlick() {
 
     $(".diff-artist-carousel").slick({
+        autoplaySpeed: 0,
+        speed: 7000,
+        cssEase: 'linear',
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
-        prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
-        // responsive: [
-        //     {
-        //         breakpoint: 1024,
-        //         settings: {
-        //         slidesToShow: 3,
-        //         infinite: true
-        //         }
+        pauseOnHover: false,
+        focusOnSelect: false,
+        // nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
+        // prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
+        nextArrow: null,
+        prevArrow: null,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    speed: 5000,
+                }
+            }, {
 
-        //     }, {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    speed: 5000,
+                }
 
-        //         breakpoint: 600,
-        //         settings: {
-        //         slidesToShow: 2,
-        //         dots: true
-        //         }
+            }
+        ]
+    });
 
-        //     }, {
+    $(".other-brand-carousel").slick({
+        autoplaySpeed: 0,
+        speed: 7000,
+        cssEase: 'linear',
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        pauseOnHover: false,
+        // nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
+        // prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
+        nextArrow: null,
+        prevArrow: null,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    speed: 5000,
+                }
+            }, {
 
-        //         breakpoint: 300,
-        //         settings: "unslick" // destroys slick
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    speed: 5000,
+                }
 
-        //     }
-        // ]
+            }
+        ]
     });
 }
 
@@ -84,15 +126,15 @@ var validateEmail = (email) => {
     );
 };
 
-function initFormValidation () {
+function initFormValidation() {
     var $submit = $('#claimYourDomain');
     var $successModal = $('#successModal');
 
-    $('#successModal .close-btn').click(function() {
+    $('#successModal .close-btn').click(function () {
         $successModal.modal('hide');
     })
 
-    $submit.click(function(e) {
+    $submit.click(function (e) {
         e.preventDefault();
 
         var $formModal = $('#formModal');
@@ -103,7 +145,7 @@ function initFormValidation () {
         var $social = $('#socialAccount');
         var socialAccount = $social.val();
         var $tnc = $('#tnc');
-        var tnc = $tnc.is(":checked") ;
+        var tnc = $tnc.is(":checked");
 
         if (nameVal === "") {
             $name.siblings('.error-text-container').removeClass('_hidden');
@@ -129,7 +171,7 @@ function initFormValidation () {
             $social.siblings('.error-text-container').addClass('_hidden');
         }
 
-        if (!tnc ) {
+        if (!tnc) {
             $tnc.siblings('.error-text-container').removeClass('_hidden');
             $tnc.focus();
         }
@@ -142,18 +184,18 @@ function initFormValidation () {
             $submit.addClass('_loading');
 
             var currentdate = new Date();
-			var datetime = currentdate.getDate() + "/"
-                            + (currentdate.getMonth()+1)  + "/"
-                            + currentdate.getFullYear() + " @ "
-                            + currentdate.getHours() + ":"
-                            + currentdate.getMinutes() + ":"
-                            + currentdate.getSeconds();
+            var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth() + 1) + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
             var domainName = '';
-            var data = `${$('#claimYourDomainForm').serialize()}&domainName=${ domainName }&datetime=${ datetime }`
+            var data = `${$('#claimYourDomainForm').serialize()}&domainName=${domainName}&datetime=${datetime}`
 
             $.ajax({
                 type: 'POST',
-                url: "addData.php",
+                url: "addData.php?3",
                 data: data,
                 success: function (data) {
 
@@ -167,14 +209,7 @@ function initFormValidation () {
     })
 }
 
-function initSearchBox () {
-
-    var $search = $('.js-search');
-
-    $search.click( onSearch)
-}
-
-function onSearch (e) {
+function onSearch(e) {
     e.preventDefault();
     var $search = $('.js-search');
     var $input = $('#store-input');
@@ -186,7 +221,7 @@ function onSearch (e) {
     var $formModal = $('#formModal');
     var domainName = $input.val();
 
-    if ( domainName === '' || domainName === null || domainName === undefined ) {
+    if (domainName === '' || domainName === null || domainName === undefined) {
         return false;
     }
 
@@ -207,7 +242,7 @@ function onSearch (e) {
 
             if (dataRes.domainAvailability == 'AVAILABLE') {
                 $formModal.modal('show');
-                $('.close-btn').click(function() {
+                $('.close-btn').click(function () {
                     $formModal.modal('hide');
                 })
                 $notFound.addClass('hidden');
@@ -222,7 +257,7 @@ function onSearch (e) {
             }
             else {
                 $formModal.modal('show');
-                $('.close-btn').click(function() {
+                $('.close-btn').click(function () {
                     $formModal.modal('hide');
                 })
                 $notFound.removeClass('hidden');
@@ -237,7 +272,7 @@ function onSearch (e) {
     });
 }
 
-function onSearchModal (e) {
+function onSearchModal(e) {
     e.preventDefault();
     var $search = $('.js-search-modal');
     var $input = $('#store-input');
@@ -249,7 +284,7 @@ function onSearchModal (e) {
     var $formModal = $('#formModal');
     var domainName = $modalInput.val();
 
-    if ( domainName === '' || domainName === null || domainName === undefined ) {
+    if (domainName === '' || domainName === null || domainName === undefined) {
         return false;
     }
 
@@ -270,44 +305,31 @@ function onSearchModal (e) {
 
             if (dataRes.domainAvailability == 'AVAILABLE') {
                 $formModal.modal('show');
-                $('.close-btn').click(function() {
+                $('.close-btn').click(function () {
                     $formModal.modal('hide');
                 })
                 $notFound.addClass('hidden');
                 $foundStoreName.text(domainName);
                 $domainFound.removeClass('hidden');
-                // $('#Modalnotavailable').modal('hide');
-
-                // $('.domainNameModalID').val(domainName);
-                // $('.domain-available').find('h5').html(domainName + '.store is available!');
-                // $('.domainclamied').find('h5').html('Great! Thank you for registering your details');
-                // $('#claimmodel').modal('show');
             }
             else {
                 $formModal.modal('show');
-                $('.close-btn').click(function() {
+                $('.close-btn').click(function () {
                     $formModal.modal('hide');
                 })
                 $notFound.removeClass('hidden');
                 $domainFound.addClass('hidden');
                 $notFoundStoreName.text(domainName);
-                // $('.domainNameModalID').val('');
-                // $('.domain-available').find('h5').html(domainName + '.store is not available!');
-
-                // $('.domain-available').find('h5').html('monalisa.store is available!');
             }
         }
     });
 }
 
-function initModalSearchBox () {
+function initSearchBox() {
 
-    var $searchModal = $('.js-search-modal');
-    var $modalInput = $('#store-input-modal');
     var $input = $('#store-input');
     var $search = $('.js-search');
 
-    $searchModal.click(onSearchModal);
     $search.click(onSearch);
 
     $input.on('keyup', function (e) {
@@ -315,11 +337,29 @@ function initModalSearchBox () {
             onSearch(e);
         }
     });
+}
+
+function initModalSearchBox() {
+
+    var $searchModal = $('.js-search-modal');
+    var $modalInput = $('#store-input-modal');
+
+    $searchModal.click(onSearchModal);
+
     $modalInput.on('keyup', function (e) {
         if (e.key === 'Enter' || e.keyCode === 13) {
             onSearchModal(e);
         }
     });
+}
+
+function isScrolledIntoView(elem) {
+    var docViewTop = jQuery(window).scrollTop();
+    var docViewBottom = docViewTop + jQuery(window).height();
+    var elemTop = jQuery(elem).offset().top;
+    var elemBottom = elemTop + jQuery(elem).height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 }
 
 $(document).ready(function () {
@@ -330,4 +370,58 @@ $(document).ready(function () {
     initSearchBox();
     initModalSearchBox();
     initFormValidation();
+
+    var $whatSepsTitle = $('.what-separates-us .page-title');
+    var $whatSepsTitleLetters = $('.what-separates-us .page-title .letters');
+
+    jQuery(window).on('scroll', function (e) {
+
+        if (isScrolledIntoView($whatSepsTitle) && $whatSepsTitleLetters.children('.letter').length === 0) {
+
+            var titleWrapper = $whatSepsTitleLetters[0];
+            titleWrapper.innerHTML = titleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+            anime.timeline({}).add({
+                targets: '.what-separates-us .page-title .animated-text .letter',
+                translateY: ["1.1em", 0],
+                translateX: ["0.55em", 0],
+                translateZ: 0,
+                rotateZ: [180, 0],
+                duration: 2500,
+                easing: "easeOutExpo",
+                delay: (el, i) => 50 * i
+            })
+
+            // var subTitleWrapper = $whatSepsSubTitleLetters[0];
+            // subTitleWrapper.innerHTML = subTitleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+            // anime.timeline({}).add({
+            //     targets: '.what-separates-us .page-sub-title .animated-text .letter',
+            //     translateY: ["1.1em", 0],
+            //     translateX: ["0.55em", 0],
+            //     translateZ: 0,
+            //     rotateZ: [180, 0],
+            //     duration: 750,
+            //     easing: "easeOutExpo",
+            //     delay: (el, i) => 50 * i
+            // });
+        }
+
+        // if (isScrolledIntoView( $whatSepsSubTitle) && $whatSepsSubTitleLetters.children('.letter').length === 0) {
+        //     var subTitleWrapper = $whatSepsSubTitleLetters[0];
+        //     subTitleWrapper.innerHTML = subTitleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        //     anime.timeline({}).add({
+        //         targets: '.animated-text .letter',
+        //         translateY: ["1.1em", 0],
+        //         translateX: ["0.55em", 0],
+        //         translateZ: 0,
+        //         rotateZ: [180, 0],
+        //         duration: 750,
+        //         easing: "easeOutExpo",
+        //         delay: (el, i) => 50 * i
+        //     })
+        // }
+    });
+
 })

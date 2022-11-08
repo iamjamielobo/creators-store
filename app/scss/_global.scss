@@ -5,6 +5,10 @@ $white: #ffffff;
     position: relative;
 }
 
+.absolute {
+    position: absolute;
+}
+
 // Helpers
 @mixin clearfix {
     &:after {
@@ -23,13 +27,13 @@ $white: #ffffff;
     text-align: center;
 }
 
-.grow {
-    transition: all .2s ease-in-out;
+// .grow {
+//     transition: all .2s ease-in-out;
 
-    &:hover {
-        transform: scale(1.1);
-    }
-}
+//     &:hover {
+//         transform: scale(1.1);
+//     }
+// }
 
 @mixin gradientAnimation($start, $end, $transTime ) {
     background-size: 100%;
@@ -97,5 +101,80 @@ $white: #ffffff;
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .hvr-bounce-in {
+        display: inline-block;
+        vertical-align: middle;
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px transparent;
+        transition-duration: 0.3s;
+        transform: scale(1);
+        transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    }
+
+    .hvr-bounce-in:hover,
+    .hvr-bounce-in:focus,
+    .hvr-bounce-in:active {
+        transform: scale(1.2);
+        transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    }
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    animation: rotating 20s linear infinite;
+}
+
+
+
+.animated-text {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animated-text .text-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.animated-text .letter {
+    transform-origin: 0 100%;
+    display: inline-block;
+}
+
+._desktop {
+    display: inherit;
+    @media only screen and (max-width: 1024px) {
+        display: none!important;
+    }
+}
+
+._mobile {
+    display: none;
+    @media only screen and (max-width: 1024px) {
+        display: block;
     }
 }

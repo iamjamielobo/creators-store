@@ -1,14 +1,23 @@
 body {
+    &.no-scroll {
+        overflow: hidden;
 
-    // &.no-scroll {
-    //     overflow: hidden;
-    // }
+        @media only screen and (max-width: 1280px) {
+            overflow: unset;
+        }
+    }
+
+    .slick-list {
+        // padding: 50px 0;
+        overflow: visible;
+    }
+
     .search-bar {
         display: flex;
         align-items: center;
         color: $black;
         background-color: $white;
-        padding: 11px 12px 10px 50px;
+        padding: 10px 8px 10px 50px;
         align-items: center;
         justify-content: center;
         overflow: hidden;
@@ -16,11 +25,22 @@ body {
         border-radius: 64px;
         height: 115px;
 
+        @media only screen and (max-width: 1280px) {
+            height: 60px;
+            padding: 10px 8px 10px 20px;
+            border: 2px solid $black;
+        }
+
         span:nth-child(1) {
             @include inter-400;
             font-size: 28px;
             line-height: 130%;
             letter-spacing: -0.023em;
+
+            @media only screen and (max-width: 1280px) {
+                font-size: 12px;
+                line-height: 130%;
+            }
         }
 
         span:nth-child(2) {
@@ -31,6 +51,12 @@ body {
             flex: 1;
             padding: 0 20px 0 15px;
 
+            @media only screen and (max-width: 1280px) {
+                font-size: 12px;
+                line-height: 130%;
+                padding: 0 10px;
+            }
+
             input {
                 all: unset;
                 @include inter-400;
@@ -38,6 +64,11 @@ body {
                 line-height: 130%;
                 letter-spacing: -0.023em;
                 width: 100%;
+
+                @media only screen and (max-width: 1280px) {
+                    font-size: 12px;
+                    line-height: 130%;
+                }
 
                 &::placeholder {
                     color: rgba(0, 0, 0, 0.5);
@@ -50,6 +81,12 @@ body {
             font-size: 28px;
             line-height: 130%;
             padding: 0 24px;
+
+            @media only screen and (max-width: 1280px) {
+                font-size: 12px;
+                line-height: 130%;
+                padding: 0 10px;
+            }
         }
 
         span:nth-child(4) {
@@ -85,12 +122,31 @@ body {
 
     .body-container {
         overflow: hidden;
+        position: relative;
+        z-index: 2;
+        background: #F56469;
+        margin-bottom: 172px;
 
         .wrapper {
             max-width: 1300px;
             width: 100%;
             margin: 0 auto;
             position: relative;
+
+            @media only screen and (max-width: 1440px) {
+                padding: 0 100px;
+                max-width: none;
+            }
+
+            @media only screen and (max-width: 1280px) {
+                padding: 0 60px;
+                max-width: none;
+            }
+
+            @media only screen and (max-width: 600px) {
+                padding: 0 30px;
+                max-width: none;
+            }
         }
 
         .page-title {
@@ -100,6 +156,12 @@ body {
             text-align: center;
             color: $black;
             margin-bottom: 36px;
+
+            @media only screen and (max-width: 1024px) {
+                font-size: 32px;
+                line-height: 120%;
+                margin-bottom: 15px;
+            }
         }
 
         .page-sub-title {
@@ -109,6 +171,11 @@ body {
             max-width: 935px;
             margin: 0 auto 50px;
             text-align: center;
+
+            @media only screen and (max-width: 1024px) {
+                font-size: 13px;
+                line-height: 20px;
+            }
         }
 
         .hero-video {
@@ -117,6 +184,12 @@ body {
             height: 100vh;
             overflow: hidden;
             background-color: #a3a7af;
+            z-index: 2;
+
+            @media only screen and (max-width: 1024px) {
+                width: 100%;
+                height: 100%;
+            }
 
             .intro-animation {
                 width: 100%;
@@ -128,6 +201,10 @@ body {
                 align-items: center;
                 justify-content: center;
                 transform: translateY(0);
+
+                @media only screen and (max-width: 1024px) {
+                    display: none;
+                }
 
                 &.infinity {
                     transform: translateY(10000px);
@@ -149,6 +226,12 @@ body {
                 top: 0;
                 left: 0;
                 object-fit: cover;
+
+                @media only screen and (max-width: 1024px) {
+                    width: 100%;
+                    height: 100%;
+                    position: static;
+                }
             }
 
             .overlay {
@@ -165,48 +248,107 @@ body {
                     width: 100%;
                     height: 100%;
 
+                    @media only screen and (max-width: 1024px) {
+                        padding-top: 20px;
+                    }
+
                     .wrapper {
                         width: 100%;
                         height: 100%;
                     }
 
-                    .logo {}
+                    .logo a img {
+                        @media only screen and (max-width: 1024px) {
+                            width: 50px;
+                        }
+                    }
 
                     .bottom-text {
                         position: absolute;
-                        bottom: 100px;
+                        bottom: 80px;
                         text-align: center;
                         color: $white;
                         width: 100%;
 
+                        @media only screen and (max-width: 1024px) {
+                            bottom: 10px;
+                            left: 0;
+                            right: 0;
+                        }
+
                         .title-uno {
                             @include clash-600;
                             text-transform: uppercase;
-                            font-size: 73.3334px;
+                            font-size: 51.579px;
                             line-height: 110%;
                             letter-spacing: 0.01em;
                             background: rgb(118, 94, 202);
                             background: linear-gradient(90deg,
                                     rgba(118, 94, 202, 1) 0%,
                                     rgba(222, 102, 104, 1) 100%);
-                            margin-bottom: 15px;
+                            margin-bottom: 5px;
                             display: inline-block;
-                            padding: 15px 30px;
+                            padding: 8px 25px 4px 22px;
                             border-radius: 25px;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 22.0172px;
+                                line-height: 110%;
+                                margin-bottom: 5px;
+                                padding: 5px 15px;
+                            }
                         }
 
                         .title-dos {
                             @include clash-500;
-                            font-size: 61.1112px;
+                            font-size: 42.9825px;
                             line-height: 110%;
                             letter-spacing: 0.01em;
                             background: rgb(118, 94, 202);
                             background: linear-gradient(90deg,
                                     rgba(118, 94, 202, 1) 0%,
                                     rgba(222, 102, 104, 1) 100%);
-                            padding: 15px 30px;
+                            padding: 11px 26px 14px 25px;
                             border-radius: 25px;
                             display: inline-block;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 18.3476px;
+                                line-height: 110%;
+                                padding: 5px 15px;
+                            }
+                        }
+                    }
+
+                    .scroll-down-container {
+                        position: absolute;
+                        bottom: 20px;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        color: $white;
+                        @media only screen and (max-width: 1024px) {
+                            display: none;
+                        }
+
+                        .scroll-down-img {
+                            animation: MoveUpDown 1s linear infinite;
+                            @media only screen and (max-width: 1024px) {
+                                animation: none;
+                            }
+                        }
+
+                        .scroll-down-text {
+                            @include inter-600;
+                            font-size: 12px;
+                            line-height: 18px;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+
                         }
                     }
                 }
@@ -215,8 +357,52 @@ body {
 
         .what-separates-us {
             background-color: #6565e4;
-            padding: 100px 0 250px;
+            padding: 100px 0 200px;
             color: $white;
+
+            @media only screen and (max-width: 1024px) {
+                padding: 50px 0 120px;
+            }
+
+            ._floater-1 {
+                top: -15px;
+                right: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -45px;
+                    right: 0;
+                }
+            }
+
+            ._floater-2 {
+                top: 50px;
+                left: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    top: auto;
+                    bottom: -70px;
+                    left: 35px;
+                }
+            }
+
+            ._floater-3 {
+                bottom: -120px;
+                left: 200px;
+
+                @media only screen and (max-width: 1024px) {
+                    display: none;
+                }
+            }
+
+            ._floater-4 {
+                bottom: -200px;
+                right: 500px;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -45px;
+                    right: 0;
+                }
+            }
 
             .page-title {
                 color: $white;
@@ -228,6 +414,15 @@ body {
             }
 
             .diff-artist-carousel {
+                .slick-list {
+                    padding: 50px 0;
+                    overflow: visible;
+
+                    @media only screen and (max-width: 1024px) {
+                        padding: 20px 0;
+                    }
+                }
+
                 .slick-arrow {
                     width: 75px;
                     height: 75px;
@@ -247,19 +442,53 @@ body {
                     }
                 }
 
+                .slick-slide {
+                    img {
+                        margin: 0 auto;
+                    }
+                }
+
+                @media only screen and (max-width: 1024px) {
+                    .slick-slide {
+                        margin: 0 27px;
+                    }
+
+                    /* the parent */
+                    .slick-list {
+                        margin: 0 -27px;
+                    }
+                }
+
                 .artist-block {
                     &:nth-child(odd) {
                         margin-top: 50px;
+
+                        @media only screen and (max-width: 1024px) {
+                            margin-top: 0;
+                        }
                     }
 
-                    &:hover {
-                        .artist-card {
-                            overflow: hidden;
-                            @include gradientAnimation(rgba(97, 92, 223, 1),
-                                rgba(222, 102, 182, 1),
-                                0.6s);
-                            // background: rgb(97,92,223);
-                            // background: linear-gradient(90deg, rgba(97,92,223,1) 0%, rgba(222,102,182,1) 100%);
+                    @media only screen and (min-width: 1024px) {
+                        &:hover {
+                            .artist-card {
+                                overflow: hidden;
+                                @include gradientAnimation(rgba(97, 92, 223, 1),
+                                    rgba(222, 102, 182, 1),
+                                    0.3s);
+
+                                .artist-img {
+                                    img {
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                        transform: perspective(1px) translateZ(0);
+                                        box-shadow: 0 0 1px transparent;
+                                        transition-duration: 0.3s;
+                                        transform: scale(1.25);
+                                        // transition-delay: 0.2s;
+                                        transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -272,6 +501,11 @@ body {
                         padding: 43px 0 0;
                         max-width: 350px;
                         margin: 0 auto;
+
+                        @media only screen and (max-width: 1024px) {
+                            padding: 30px 0 0;
+                            max-width: none;
+                        }
 
                         &._red {
                             background: #de6668;
@@ -298,28 +532,57 @@ body {
                             @include clash-600;
                             font-size: 38px;
                             line-height: 150%;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 26.0036px;
+                                line-height: 1.2;
+                                margin-bottom: 5px;
+                            }
                         }
 
                         .artist-text {
                             @include inter-700;
                             font-size: 18px;
                             line-height: 160%;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 12.3175px;
+                            }
                         }
 
                         .artist-img {
                             min-height: 300px;
                             display: flex;
                             align-items: end;
+                            margin-top: 50px;
+
+                            @media only screen and (max-width: 1024px) {
+                                margin-top: 10px;
+                                min-height: auto;
+                            }
 
                             img {
                                 margin: 0 auto;
+
+                                @media only screen and (min-width: 1024px) {
+                                    transform: scale(1);
+                                    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+                                }
+
+                                @media only screen and (max-width: 1024px) {
+                                    height: 200px;
+                                }
                             }
                         }
                     }
 
                     .artist-caption {
-                        margin-top: 30px;
+                        margin-top: 10px;
                         text-align: center;
+
+                        @media only screen and (max-width: 1024px) {
+                            margin-top: 5px;
+                        }
 
                         span {
                             @include inter-500;
@@ -330,6 +593,10 @@ body {
                             background: $white;
                             border-radius: 12px;
                             padding: 5px 20px;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 13.6861px;
+                            }
                         }
                     }
                 }
@@ -338,8 +605,73 @@ body {
 
         .form-section {
             background-color: #de6668;
-            padding: 167px 0 177px;
+            padding: 227px 0 177px;
             color: $white;
+            position: relative;
+
+            @media only screen and (max-width: 1024px) {
+                padding: 127px 0 137px;
+            }
+
+            ._floater-1 {
+                top: 0px;
+                left: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -65px;
+                    left: 35px;
+                }
+            }
+
+            ._floater-2 {
+                bottom: -220px;
+                left: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    bottom: -166px;
+                    left: 30px;
+                }
+            }
+
+            ._floater-3 {
+                bottom: -100px;
+                right: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    display: none;
+                }
+            }
+
+            ._floater-4 {
+                top: -260px;
+                right: 500px;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -155px;
+                    right: 0;
+                }
+            }
+
+            .rotate-it {
+                position: absolute;
+                top: -385px;
+                right: 0;
+                width: 300px;
+                height: 300px;
+
+                @media only screen and (max-width: 1024px) {
+                    width: 150px;
+                    height: 150px;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    top: -200px;
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
 
             .page-title {
                 color: $white;
@@ -351,6 +683,10 @@ body {
                         position: absolute;
                         bottom: -20px;
                         left: 0;
+
+                        @media only screen and (max-width: 1024px) {
+                            width: 220px;
+                        }
                     }
                 }
             }
@@ -359,18 +695,93 @@ body {
                 color: $white;
                 margin: 62px auto 83px;
                 text-align: center;
+
+                @media only screen and (max-width: 1024px) {
+                    margin: 50px auto;
+                }
+            }
+
+
+
+            .search-mobile {
+                cursor: pointer;
+                @include clash-600;
+                font-size: 13px;
+                line-height: 150%;
+                text-align: center;
+                color: $white;
+                padding: 15px 0px;
+                background: #6565e4;
+                border-radius: 48px;
+                height: 53px;
+                border: 1.5px solid $white;
+                width: 100%;
+                margin-top: 20px;
+
+                &._loading {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 15px 0px;
+                    cursor: not-allowed;
+                    pointer-events: none;
+
+                    .lds-ring {
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px;
+
+                        div {
+                            @media only screen and (max-width: 1024px) {
+                                width: 30px;
+                                height: 30px;
+                                border: 3px solid #fff;
+                                border-color: #fff transparent transparent transparent;
+                            }
+                        }
+                    }
+
+                    .js-search-btn-text {
+                        display: none;
+                    }
+                }
             }
         }
 
         .why-store {
             padding: 150px 0;
             overflow: hidden;
+            position: relative;
+            background-color: $white;
+
+            @media only screen and (max-width: 1024px) {
+                padding: 50px 0;
+            }
+
+            ._floater-1 {
+                top: -50px;
+                right: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -20px;
+                }
+            }
+
+            .page-title {
+                @media only screen and (max-width: 1024px) {
+                    margin-bottom: 50px;
+                }
+            }
 
             .page-content {
                 display: grid;
                 grid-template-columns: repeat(3, 31%);
                 grid-column-gap: 3.5%;
                 text-align: center;
+
+                @media only screen and (max-width: 1024px) {
+                    grid-template-columns: 1fr;
+                }
 
                 .why-block {
                     .why-block-wrapper {
@@ -380,6 +791,13 @@ body {
                         color: $black;
                         text-align: center;
 
+                        @media only screen and (max-width: 1024px) {
+                            padding: 24px;
+                            text-align: left;
+                            margin-bottom: 40px;
+                            display: flex;
+                        }
+
                         &._yellow {
                             background-color: #e9c356;
                         }
@@ -387,6 +805,10 @@ body {
                         &._purple {
                             background-color: #a56eee;
                             margin-top: 60px;
+
+                            @media only screen and (max-width: 1024px) {
+                                margin-top: 0;
+                            }
                         }
 
                         &._red {
@@ -398,9 +820,19 @@ body {
                             align-items: center;
                             justify-content: center;
 
+                            @media only screen and (max-width: 1024px) {
+                                margin-right: 12px;
+                                align-items: flex-start;
+                            }
+
                             img {
+
                                 // width: 90px;
                                 // height: 90px;
+                                @media only screen and (max-width: 1024px) {
+                                    width: 54px;
+                                    height: 54px;
+                                }
                             }
                         }
 
@@ -409,12 +841,23 @@ body {
                             font-size: 32px;
                             line-height: 40px;
                             margin: 40px 0 16px;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 22px;
+                                line-height: 26px;
+                                margin: 0px 0 8px;
+                            }
                         }
 
                         .why-text {
                             @include inter-400;
                             font-size: 18px;
                             line-height: 28px;
+
+                            @media only screen and (max-width: 1024px) {
+                                font-size: 14px;
+                                line-height: 20px;
+                            }
                         }
                     }
                 }
@@ -424,8 +867,27 @@ body {
         .other-brands {
             color: $white;
             background-color: #6565e4;
-            padding: 90px 0 250px;
+            padding: 90px 0 120px;
             text-align: center;
+
+            ._floater-1 {
+                bottom: -100px;
+                left: 0;
+            }
+
+            ._floater-2 {
+                top: 0;
+                left: 0;
+            }
+
+            ._floater-3 {
+                top: -123px;
+                right: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -117px;
+                }
+            }
 
             .page-title {
                 color: $white;
@@ -436,11 +898,20 @@ body {
                 font-size: 24px;
                 line-height: 38px;
                 max-width: 935px;
-                margin: 0 auto 50px;
+                margin: 0 auto 100px;
             }
 
             .other-brand-carousel {
                 position: relative;
+
+                .slick-slide {
+                    img {
+                        margin: 0 auto;
+                        @media only screen and (max-width: 1024px) {
+                            width: 80%;
+                        }
+                    }
+                }
 
                 .slick-arrow {
                     width: 75px;
@@ -462,6 +933,7 @@ body {
                 }
 
                 .other-brand-card-container {
+
                     .other-brand-card {}
 
                     .caption-container {
@@ -498,6 +970,31 @@ body {
             padding: 125px 0;
             background-color: #e9c356;
 
+            @media only screen and (max-width: 1024px) {
+                padding: 50px 0 100px;
+            }
+
+            ._floater-1 {
+                top: -155px;
+                right: 23%;
+
+                @media only screen and (max-width: 1024px) {
+                    top: -77px;
+                    right: 10%;
+                }
+            }
+
+            ._floater-2 {
+                bottom: 0px;
+                right: 0;
+
+                @media only screen and (max-width: 1024px) {
+                    bottom: -85px;
+                    right: auto;
+                    left: 20px;
+                }
+            }
+
             .register-grid {
                 display: grid;
                 grid-template-columns: repeat(2, 45%);
@@ -505,9 +1002,24 @@ body {
                 align-items: center;
                 justify-content: center;
 
+                @media only screen and (max-width: 1024px) {
+                    grid-template-columns: 1fr;
+                }
+
                 .btns-container {
+                    order: 0;
+
+                    @media only screen and (max-width: 1024px) {
+                        order: 1;
+                    }
+
                     img {
                         margin-bottom: 20px;
+
+                        @media only screen and (max-width: 1024px) {
+                            width: 100%;
+                            margin-bottom: 10px;
+                        }
 
                         &:last-child {
                             margin-bottom: 0;
@@ -516,11 +1028,20 @@ body {
                 }
 
                 .text-container {
+                    order: 1;
                     font-size: 56px;
                     line-height: 69px;
                     @include clash-600;
                     text-transform: uppercase;
                     color: $black;
+
+                    @media only screen and (max-width: 1024px) {
+                        order: 0;
+                        font-size: 32px;
+                        line-height: 36px;
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
 
                     .gradient-text {
                         background: #5b5be3;
@@ -533,21 +1054,45 @@ body {
         }
 
         footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             background-color: $white;
+            z-index: -1;
 
             .footer-container {
                 padding: 50px 0;
                 display: grid;
                 grid-template-columns: 60% 40%;
 
+                @media only screen and (max-width: 1024px) {
+                    grid-template-columns: 1fr;
+                    padding: 30px 0;
+                }
+
                 .footer-link-container {
                     display: grid;
                     grid-template-columns: repeat(4, 25%);
 
+                    @media only screen and (max-width: 1024px) {
+                        grid-template-columns: 1fr;
+                        padding: 0 30px;
+                    }
+
                     .footer-col {
+                        @media only screen and (max-width: 1024px) {
+                            display: grid;
+                            grid-template-columns: repeat(2, 45%);
+                            grid-column-gap: 10%;
+                        }
+
                         .footer-link {
                             margin-bottom: 40px;
                             @include clash-500;
+
+                            @media only screen and (max-width: 1024px) {
+                                margin-bottom: 20px;
+                            }
 
                             &:last-child {
                                 margin-bottom: 0;
@@ -564,6 +1109,11 @@ body {
                     ul {
                         display: flex;
                         justify-content: end;
+
+                        @media only screen and (max-width: 1024px) {
+                            justify-content: center;
+                            margin-top: 25px;
+                        }
 
                         li {
                             margin-right: 20px;
@@ -583,36 +1133,73 @@ body {
         max-width: 1000px;
         position: relative;
 
+        @media only screen and (max-width: 1024px) {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .close-btn {
             position: absolute;
             right: 15px;
             top: 15px;
             cursor: pointer;
+
+            @media only screen and (max-width: 1024px) {
+                right: 10px;
+                top: 10px;
+                cursor: pointer;
+                width: 15px;
+            }
         }
     }
 
     .modal-search-wrapper {
-        padding: 75px 50px 25px;
+        padding: 50px 50px 25px;
+
+        @media only screen and (max-width: 1024px) {
+            padding: 35px 20px 15px;
+        }
 
         .success-modal-container {
             text-align: center;
             padding: 50px 0;
             color: $black;
+
+            @media only screen and (max-width: 1024px) {
+                padding: 50px 0 20px;
+            }
+
             div img {
                 max-width: 150px;
                 margin-bottom: 50px;
+
+                @media only screen and (max-width: 1024px) {
+                    max-width: 100px;
+                    margin-bottom: 30px;
+                }
             }
+
             p:nth-child(2) {
                 @include clash-600;
                 font-size: 44px;
                 line-height: 120%;
                 margin-bottom: 15px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 32px;
+                }
             }
 
             p:nth-child(3) {
                 @include inter-400;
                 font-size: 28px;
                 line-height: 38px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 18px;
+                    line-height: 24px;
+                }
             }
         }
 
@@ -623,12 +1210,56 @@ body {
             margin: 0 auto;
             border: 3px solid #000;
 
+            @media only screen and (max-width: 1024px) {
+                width: 100%;
+                border: 2px solid #000;
+                padding: 10px;
+            }
+
+            span:nth-child(1) {
+                font-size: 22px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 12px;
+                }
+            }
+
+            span:nth-child(2) {
+                font-size: 22px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 12px;
+                }
+
+                input {
+                    font-size: 22px;
+                    line-height: 130%;
+
+                    @media only screen and (max-width: 1024px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            span:nth-child(3) {
+                font-size: 22px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 12px;
+                    padding-left: 5px;
+                }
+            }
+
             span:nth-child(4) {
                 padding: 20px 30px 17px;
                 line-height: normal;
                 font-size: 21px;
                 height: 66px;
                 width: 130px;
+
+                @media only screen and (max-width: 1024px) {
+                    display: none;
+                }
 
                 &._loading {
                     span:nth-child(4) {
@@ -648,42 +1279,40 @@ body {
                     }
                 }
             }
-
-            span:nth-child(1) {
-                font-size: 22px;
-            }
-
-            span:nth-child(2) {
-                font-size: 22px;
-
-                input {
-                    font-size: 22px;
-                    line-height: 130%;
-                }
-            }
-
-            span:nth-child(3) {
-                font-size: 22px;
-            }
         }
 
-        .not-found, .domain-found {
+        .not-found,
+        .domain-found {
             padding: 50px 0;
             text-align: center;
             color: $black;
+
+            @media only screen and (max-width: 1024px) {
+                padding: 50px 0 15px
+            }
 
             p:nth-child(1) {
                 @include clash-600;
                 font-size: 52px;
                 line-height: 120%;
                 margin-bottom: 15px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 32px;
+                }
             }
 
             p:nth-child(2) {
                 @include inter-400;
                 font-size: 24px;
                 line-height: 38px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 12px;
+                    line-height: 18px;
+                }
             }
+
             &.hidden {
                 display: none;
             }
@@ -691,23 +1320,33 @@ body {
 
         .domain-found {
             padding: 50px 0 20px;
+
             p:nth-child(1) {
                 @include clash-600;
                 font-size: 32px;
                 line-height: 120%;
                 margin-bottom: 5px;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 30px;
+                }
             }
 
             p:nth-child(2) {
                 @include inter-400;
                 font-size: 16px;
                 line-height: 120%;
+
+                @media only screen and (max-width: 1024px) {
+                    font-size: 12px;
+                }
             }
 
             form {
                 width: 100%;
                 max-width: 700px;
                 margin: 30px auto 0;
+
                 .form-field {
                     .form-control {
                         background-color: #fff;
@@ -726,8 +1365,13 @@ body {
                         -webkit-appearance: none;
                         -moz-appearance: none;
                         appearance: none;
-                        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+                        @media only screen and (max-width: 1024px) {
+                            font-size: 13px;
+                        }
                     }
+
                     .accept-tnc {
                         text-align: left;
                         display: flex;
@@ -735,10 +1379,17 @@ body {
                         margin-top: 30px;
                         margin-left: 10px;
                         display: block;
+
+                        @media only screen and (max-width: 1024px) {
+                            margin-top: 20px;
+                            margin-left: 0px;
+                        }
+
                         label {
                             margin-left: 5px;
                         }
                     }
+
                     .info-text {
                         font-size: 10px;
                         text-align: left;
@@ -747,14 +1398,21 @@ body {
                         margin-top: 10px;
                         margin-left: 10px;
                         color: #808080;
+
+                        @media only screen and (max-width: 1024px) {
+                            font-size: 9px;
+                        }
                     }
+
                     .error-text-container {
                         text-align: left;
                         display: block;
                         margin: 15px 0;
+
                         &._hidden {
                             display: none;
                         }
+
                         .error-text {
                             display: inline-block;
                             color: #721c24;
@@ -764,6 +1422,7 @@ body {
                             border-radius: 10px;
                         }
                     }
+
                     button {
                         @include inter-500;
                         margin-top: 50px;
@@ -776,6 +1435,11 @@ body {
                         border-color: #0b5ed7;
                         height: 62px;
                         width: 240px;
+
+                        @media only screen and (max-width: 1024px) {
+                            font-size: 16px;
+                        }
+
                         &._loading {
                             cursor: not-allowed;
                             pointer-events: none;
@@ -787,6 +1451,7 @@ body {
                                 display: inline-block;
                                 width: 30px;
                                 height: 30px;
+
                                 div {
                                     width: 30px;
                                     height: 30px;
@@ -805,6 +1470,18 @@ body {
     }
 }
 
+@keyframes MoveUpDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -812,5 +1489,18 @@ body {
 
     100% {
         opacity: 1;
+    }
+}
+
+._floater-1,
+._floater-2,
+._floater-3,
+._floater-4,
+._floater-5 {
+    z-index: 10;
+    @media only screen and (max-width: 1024px) {
+        img {
+            width: 70%;
+        }
     }
 }

@@ -192,3 +192,12 @@ html {
     font-family: $font-dos;
     font-weight: bold;
 }
+
+.font-bold-store {
+    @include inter-700;
+}
+
+@mixin inter-600 {
+    font-family: $font-dos;
+    font-weight: 600;
+}
