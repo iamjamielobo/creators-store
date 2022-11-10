@@ -1,44 +1,16 @@
-function initHeroTextAnimation () {
-    var $titleLetters = $('.title-uno .letters');
-    var titleWrapper = $titleLetters[0];
-    titleWrapper.innerHTML = titleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-    var $titleDosLetters = $('.title-dos .letters');
-    var titleDosWrapper = $titleDosLetters[0];
-    titleDosWrapper.innerHTML = titleDosWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-    anime.timeline({}).add({
-        targets: '.title-uno .animated-text .letter',
-        translateY: ["1.1em", 0],
-        translateX: ["0.55em", 0],
-        translateZ: 0,
-        rotateZ: [180, 0],
-        duration: 2500,
-        easing: "easeOutExpo",
-        delay: (el, i) => 50 * i
-    })
-
-    anime.timeline({}).add({
-        targets: '.title-dos .animated-text .letter',
-        translateY: ["1.1em", 0],
-        translateX: ["0.55em", 0],
-        translateZ: 0,
-        rotateZ: [180, 0],
-        duration: 2500,
-        easing: "easeOutExpo",
-        delay: (el, i) => 50 * i
-    })
-}
-
 function initHeroAnimation() {
     var $body = $('body');
     var $heroVideo = $('.js-video');
     var $animationDiv = $('.intro-animation');
     var isMobile = $('.intro-animation').css('display') === 'none';
 
-    if ( isMobile ) {
+    if (isMobile) {
         $heroVideo.get(0).play();
-        initHeroTextAnimation();
+        setTimeout(function () {
+            $('.title-uno, .title-dos').removeClass('_hidden').addClass('title-fadeIn');
+        }, 500);
+        // initHeroTextAnimation();
+        // initMobileWow();
         return false;
     }
 
@@ -47,7 +19,8 @@ function initHeroAnimation() {
         setTimeout(function () {
             $body.removeClass('no-scroll');
             $heroVideo.get(0).play();
-            initHeroTextAnimation();
+            $('.title-uno, .title-dos').removeClass('_hidden').addClass('title-fadeIn');
+            // initHeroTextAnimation();
         }, 500);
     }, 3000);
 }
@@ -70,17 +43,32 @@ function initSlick() {
         prevArrow: null,
         responsive: [
             {
+                breakpoint: 1380,
+                settings: {
+                    slidesToShow: 2,
+                    speed: 7000,
+                    swipe: false,
+                    pauseOnHover: false,
+                    focusOnSelect: false
+                }
+            }, {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 2,
-                    speed: 5000,
+                    speed: 7000,
+                    swipe: false,
+                    pauseOnHover: false,
+                    focusOnSelect: false,
                 }
             }, {
 
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1,
-                    speed: 5000,
+                    speed: 7000,
+                    swipe: false,
+                    pauseOnHover: false,
+                    focusOnSelect: false,
                 }
 
             }
@@ -96,23 +84,39 @@ function initSlick() {
         slidesToScroll: 1,
         autoplay: true,
         pauseOnHover: false,
+        focusOnSelect: false,
         // nextArrow: `<img class='next-arrow' src="img/carousel/right.png">`,
         // prevArrow: `<img class='prev-arrow' src="img/carousel/left.png">`
         nextArrow: null,
         prevArrow: null,
         responsive: [
             {
+                breakpoint: 1380,
+                settings: {
+                    slidesToShow: 2,
+                    speed: 7000,
+                    swipe: false,
+                    pauseOnHover: false,
+                    focusOnSelect: false
+                }
+            }, {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 2,
-                    speed: 5000,
+                    speed: 7000,
+                    swipe: false,
+                    pauseOnHover: false,
+                    focusOnSelect: false
                 }
             }, {
 
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1,
-                    speed: 5000,
+                    speed: 7000,
+                    swipe: false,
+                    pauseOnHover: false,
+                    focusOnSelect: false,
                 }
 
             }
@@ -125,6 +129,16 @@ var validateEmail = (email) => {
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
 };
+
+function isValidHttpUrl(string) {
+    let url;
+    try {
+        url = new URL(string);
+    } catch (_) {
+        return false;
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
+}
 
 function initFormValidation() {
     var $submit = $('#claimYourDomain');
@@ -163,7 +177,7 @@ function initFormValidation() {
             $email.siblings('.error-text-container').addClass('_hidden');
         }
 
-        if (socialAccount === '') {
+        if (socialAccount === '' || !isValidHttpUrl(socialAccount)) {
             $social.siblings('.error-text-container').removeClass('_hidden');
             $social.focus();
         }
@@ -179,23 +193,27 @@ function initFormValidation() {
             $tnc.siblings('.error-text-container').addClass('_hidden');
         }
 
-        if (nameVal !== "" && emailVal !== "" && validateEmail(emailVal) && socialAccount !== "" && tnc) {
+        if (nameVal !== "" && emailVal !== "" && validateEmail(emailVal) && socialAccount !== "" && isValidHttpUrl(socialAccount) && tnc) {
 
             $submit.addClass('_loading');
 
+            var isMobile = $('.intro-animation').css('display') === 'none';
+            var $input = isMobile ? $('#store-input-mobile') : $('#store-input');
             var currentdate = new Date();
-            var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth() + 1) + "/"
-                + currentdate.getFullYear() + " @ "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
-            var domainName = '';
-            var data = `${$('#claimYourDomainForm').serialize()}&domainName=${domainName}&datetime=${datetime}`
+            var d = new Date
+            var dformat = [d.getMonth() + 1,
+            d.getDate(),
+            d.getFullYear()].join('/') + ' ' +
+                [d.getHours(),
+                d.getMinutes(),
+                d.getSeconds()].join(':');
+            var domainName = $input.val();
+
+            var data = `${$('#claimYourDomainForm').serialize()}&domainName=${domainName}&datetime=${dformat}`;
 
             $.ajax({
                 type: 'POST',
-                url: "addData.php?3",
+                url: "addData.php?1006",
                 data: data,
                 success: function (data) {
 
@@ -211,8 +229,9 @@ function initFormValidation() {
 
 function onSearch(e) {
     e.preventDefault();
+    var isMobile = $('.intro-animation').css('display') === 'none';
     var $search = $('.js-search');
-    var $input = $('#store-input');
+    var $input = isMobile ? $('#store-input-mobile') : $('#store-input');
     var $modalInput = $('#store-input-modal');
     var $notFound = $('#not-found');
     var $domainFound = $('#domain-found');
@@ -231,7 +250,7 @@ function onSearch(e) {
 
     $.ajax({
         type: 'POST',
-        url: "checkDomain.php",
+        url: "checkDomain.php?1006",
         data: { 'domainName': domainName },
         success: function (data) {
 
@@ -275,7 +294,8 @@ function onSearch(e) {
 function onSearchModal(e) {
     e.preventDefault();
     var $search = $('.js-search-modal');
-    var $input = $('#store-input');
+    var isMobile = $('.intro-animation').css('display') === 'none';
+    var $input = isMobile ? $('#store-input-mobile') : $('#store-input');
     var $modalInput = $('#store-input-modal');
     var $notFound = $('#not-found');
     var $domainFound = $('#domain-found');
@@ -294,14 +314,14 @@ function onSearchModal(e) {
 
     $.ajax({
         type: 'POST',
-        url: "checkDomain.php",
+        url: "checkDomain.php?1006",
         data: { 'domainName': domainName },
         success: function (data) {
 
             var dataRes = $.parseJSON(data);
 
             $search.removeClass('_loading');
-            $modalInput.val(domainName);
+            $input.val(domainName);
 
             if (dataRes.domainAvailability == 'AVAILABLE') {
                 $formModal.modal('show');
@@ -327,7 +347,8 @@ function onSearchModal(e) {
 
 function initSearchBox() {
 
-    var $input = $('#store-input');
+    var isMobile = $('.intro-animation').css('display') === 'none';
+    var $input = isMobile ? $('#store-input-mobile') : $('#store-input');
     var $search = $('.js-search');
 
     $search.click(onSearch);
@@ -362,6 +383,43 @@ function isScrolledIntoView(elem) {
     return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 }
 
+function initMobileWow() {
+    var isMobile = $('.intro-animation').css('display') === 'none';
+    if (isMobile) {
+        // $(".page-title").attr('data-wow-delay', 0);
+        // $(".page-sub-title").attr('data-wow-delay', 0);
+        var list = $('[data-wow-delay]');
+        list.data('wow-delay', 0);
+        // list.data('animation-delay', 0);
+        list.css('animation-delay', 0);
+
+        wow = new WOW(
+            {
+                offset: 0,          // default
+                mobile: true,       // default
+                live: true,        // default
+                delay: 0
+            }
+        )
+
+        wow.init();
+
+    }
+}
+
+function iOS() {
+    return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ].includes(navigator.platform)
+        // iPad on iOS 13 detection
+        || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
 $(document).ready(function () {
     new WOW().init();
 
@@ -371,57 +429,8 @@ $(document).ready(function () {
     initModalSearchBox();
     initFormValidation();
 
-    var $whatSepsTitle = $('.what-separates-us .page-title');
-    var $whatSepsTitleLetters = $('.what-separates-us .page-title .letters');
-
-    jQuery(window).on('scroll', function (e) {
-
-        if (isScrolledIntoView($whatSepsTitle) && $whatSepsTitleLetters.children('.letter').length === 0) {
-
-            var titleWrapper = $whatSepsTitleLetters[0];
-            titleWrapper.innerHTML = titleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-            anime.timeline({}).add({
-                targets: '.what-separates-us .page-title .animated-text .letter',
-                translateY: ["1.1em", 0],
-                translateX: ["0.55em", 0],
-                translateZ: 0,
-                rotateZ: [180, 0],
-                duration: 2500,
-                easing: "easeOutExpo",
-                delay: (el, i) => 50 * i
-            })
-
-            // var subTitleWrapper = $whatSepsSubTitleLetters[0];
-            // subTitleWrapper.innerHTML = subTitleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-            // anime.timeline({}).add({
-            //     targets: '.what-separates-us .page-sub-title .animated-text .letter',
-            //     translateY: ["1.1em", 0],
-            //     translateX: ["0.55em", 0],
-            //     translateZ: 0,
-            //     rotateZ: [180, 0],
-            //     duration: 750,
-            //     easing: "easeOutExpo",
-            //     delay: (el, i) => 50 * i
-            // });
-        }
-
-        // if (isScrolledIntoView( $whatSepsSubTitle) && $whatSepsSubTitleLetters.children('.letter').length === 0) {
-        //     var subTitleWrapper = $whatSepsSubTitleLetters[0];
-        //     subTitleWrapper.innerHTML = subTitleWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-        //     anime.timeline({}).add({
-        //         targets: '.animated-text .letter',
-        //         translateY: ["1.1em", 0],
-        //         translateX: ["0.55em", 0],
-        //         translateZ: 0,
-        //         rotateZ: [180, 0],
-        //         duration: 750,
-        //         easing: "easeOutExpo",
-        //         delay: (el, i) => 50 * i
-        //     })
-        // }
-    });
+    if ( iOS() ) {
+        $('body').addClass('_ios');
+    }
 
 })

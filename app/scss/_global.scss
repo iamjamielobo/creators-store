@@ -9,6 +9,14 @@ $white: #ffffff;
     position: absolute;
 }
 
+.font-bold {
+    font-weight: bold;
+}
+
+.store-animate {
+    animation: color-change 1.5s infinite;
+}
+
 // Helpers
 @mixin clearfix {
     &:after {
@@ -166,15 +174,48 @@ $white: #ffffff;
 }
 
 ._desktop {
-    display: inherit;
+    display: flex;
+
     @media only screen and (max-width: 1024px) {
-        display: none!important;
+        display: none ;
     }
 }
 
 ._mobile {
     display: none;
+
     @media only screen and (max-width: 1024px) {
-        display: block;
+        display: flex;
+    }
+}
+
+@keyframes color-change {
+    0% {
+        color: #E9C356;
+    }
+
+    33% {
+        color: #DE6668;
+    }
+
+    66% {
+        color: $black;
+    }
+
+    100% {
+        color: #E9C356;
+    }
+}
+
+.title-fadeIn {
+    animation: zoomIn 1s;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
     }
 }

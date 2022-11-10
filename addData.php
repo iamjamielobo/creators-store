@@ -4,7 +4,9 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $fp = fopen($_SERVER['DOCUMENT_ROOT'] . '/data.csv', 'a+');
+    // print_r($_POST);exit;
+
+    $fp = fopen($_SERVER['DOCUMENT_ROOT'] . '/form.csv', 'a');
     $result = fputcsv($fp, $_POST);
     fclose($fp);
 
